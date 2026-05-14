@@ -34,6 +34,7 @@ public class ProdutoController {
 			.body(repository.findAll());
 	}
 	
+	
 	//curl POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pao.json
 	@PostMapping("/produtos")
 	public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
@@ -48,6 +49,8 @@ public class ProdutoController {
 				.status(HttpStatus.CREATED)
 				.body(produto);
 	}
+	
+	
 	@GetMapping("/produtos/{id}")
 	public ResponseEntity<Object> buscarPorId(
 			@PathVariable(value = "id") Integer id) {
@@ -63,6 +66,7 @@ public class ProdutoController {
 				.status(HttpStatus.NOT_FOUND)
 				.body("Produto não encontrado!");
 		}
+	
 	
 	@PutMapping("/produtos/{id}")
 	public ResponseEntity<Object> buscarPorId(
@@ -87,6 +91,8 @@ public class ProdutoController {
 				.body("Produto atualizado com sucesso!");
 		}
 		
+	
+	    //curl -X DELETE http://localhost:8080/produtos/1//
 		@DeleteMapping("/produtos/{id}")
 		public ResponseEntity<String> apagarProduto(@PathVariable Integer id) {
 			Optional<Produto> produtoOpt = repository.findById(id);
